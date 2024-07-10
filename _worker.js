@@ -7,11 +7,11 @@ import { connect } from 'cloudflare:sockets';
 
 // How to generate your own UUID:
 // https://www.uuidgenerator.net/
-let userID = '89b3cbba-e6ac-485a-9481-976a0415eab9';
+let userID = '62e1ee0b-62a9-4ae7-9146-73a69bafc3f2';
 
 // https://www.nslookup.io/domains/cdn.xn--b6gac.eu.org/dns-records/
 // https://www.nslookup.io/domains/cdn-all.xn--b6gac.eu.org/dns-records/
-const proxyIPs= ['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org'];
+const proxyIPs= ['bestproxy.030101.xyz'];
 
 const defaultHttpPorts = ['80', '8080', '2052', '2082', '2086', '2095', '8880'];
 const defaultHttpsPorts = ['443', '8443', '2053', '2083', '2087', '2096'];
@@ -791,10 +791,10 @@ const getNormalConfigs = async (env, hostName, client) => {
     const { cleanIPs, proxyIP, ports } = proxySettings;
     const resolved = await resolveDNS(hostName);
     const Addresses = [
-        hostName,
-        'www.speedtest.net',
-        ...resolved.ipv4,
-        ...resolved.ipv6.map((ip) => `[${ip}]`),
+        'hk.cf.zhetengsha.eu.org',
+        'sg.cf.zhetengsha.eu.org',
+        'us.cf.zhetengsha.eu.org',
+        'jp.cf.zhetengsha.eu.org',
         ...(cleanIPs ? cleanIPs.split(',') : [])
     ];
 
@@ -824,20 +824,20 @@ const generateRemark = (index, port) => {
     let remark = '';
     switch (index) {
         case 0:
+                       remark = `🏝香港`;
+                       break;
         case 1:
-            remark = `💦 BPB - Domain_${index + 1} : ${port}`;
-            break;
+                       remark = `🏝新加坡`;
+                       break;
         case 2:
+	        remark = `🏝美国`;
+	        break;
         case 3:
-            remark = `💦 BPB - IPv4_${index - 1} : ${port}`;
-            break;
-        case 4:
-        case 5:
-            remark = `💦 BPB - IPv6_${index - 3} : ${port}`;
-            break;
+	        remark = `🏝日本`;
+	        break;
         default:
-            remark = `💦 BPB - Clean IP_${index - 5} : ${port}`;
-            break;
+                        remark = `🏝干净IP${index - 5}`;
+                        break;
     }
 
     return remark;
